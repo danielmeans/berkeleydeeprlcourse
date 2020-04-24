@@ -69,8 +69,11 @@ class ReplayBuffer(object):
         ## HINT 3: look at the sample_recent_data function below
         array_length = self.obs.shape[0]
         indices = np.random.permutation(array_length)
-        obs_perm, acs_perm, rews_perm, next_obs_perm, terminals_perm = self.obs[indices], self.acs[indices], self.rews[indices], self.next_obs[indices], self.terminals[indices]
-        return obs_perm[:batch_size], acs_perm[:batch_size], rews_perm[:batch_size], next_obs_perm[:batch_size], terminals_perm[:batch_size]
+        obs_perm, acs_perm, rews_perm, next_obs_perm, terminals_perm = self.obs[indices], self.acs[indices], \
+                                                                       self.rews[indices], self.next_obs[indices], \
+                                                                       self.terminals[indices]
+        return obs_perm[:batch_size], acs_perm[:batch_size], rews_perm[:batch_size], next_obs_perm[:batch_size], \
+               terminals_perm[:batch_size]
 
     def sample_recent_data(self, batch_size=1):
         return self.obs[-batch_size:], self.acs[-batch_size:], self.rews[-batch_size:], self.next_obs[-batch_size:], self.terminals[-batch_size:]
