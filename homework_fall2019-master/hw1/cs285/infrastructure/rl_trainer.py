@@ -198,7 +198,7 @@ class RL_Trainer(object):
                                     re_n=re_batch,
                                     next_ob_no=next_ob_batch,
                                     terminal_n=terminal_batch)
-            # TODO print loss
+            print("Loss at time step {} : {}".format(train_step, loss))
 
     def do_relabel_with_expert(self, expert_policy, paths):
         print("\nRelabelling collected observations with labels from an expert policy...")
