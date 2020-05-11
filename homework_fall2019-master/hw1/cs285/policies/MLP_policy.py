@@ -87,7 +87,6 @@ class MLPPolicy(BasePolicy):
         # HINT1: you will need to call self.sess.run
         # HINT2: the tensor we're interested in evaluating is self.sample_ac
         # HINT3: in order to run self.sample_ac, it will need observation fed into the feed_dict
-        #obs_placeolder = tf.placeholder(dtype=tf.float32, shape=[1, None], name="obs_placeholder")
         return self.sess.run(self.sample_ac, feed_dict={self.observations_pl: observation})
 
     # update/train this policy
