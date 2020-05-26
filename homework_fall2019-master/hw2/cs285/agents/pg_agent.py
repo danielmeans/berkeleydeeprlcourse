@@ -159,12 +159,12 @@ class PGAgent(BaseAgent):
                 note that all entries of this output are equivalent
                 because each index t is a sum from 0 to T-1 (and doesnt involve t)
         """
-
+        trajectory_length = len(rewards)
         # 1) create a list of indices (t'): from 0 to T-1
-        indices = [t for t in range(len(rewards))]
+        indices = np.array([t for t in range(trajectory_length)])
 
         # 2) create a list where the entry at each index (t') is gamma^(t')
-        discounts = [np.power([self.gamma], indices)]
+        discounts = np.power([self.gamma], indices)
 
         # 3) create a list where the entry at each index (t') is gamma^(t') * r_{t'}
         discounted_rewards = discounts * rewards
