@@ -167,7 +167,7 @@ class PGAgent(BaseAgent):
         discounts = [np.power([self.gamma], indices)]
 
         # 3) create a list where the entry at each index (t') is gamma^(t') * r_{t'}
-        discounted_rewards = TODO
+        discounted_rewards = discounts * rewards
 
         # 4) calculate a scalar: sum_{t'=0}^{T-1} gamma^(t') * r_{t'}
         sum_of_discounted_rewards = TODO
