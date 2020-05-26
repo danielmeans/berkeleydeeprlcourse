@@ -161,7 +161,7 @@ class PGAgent(BaseAgent):
         """
 
         # 1) create a list of indices (t'): from 0 to T-1
-        indices = TODO
+        indices = [t for t in range(len(rewards))]
 
         # 2) create a list where the entry at each index (t') is gamma^(t')
         discounts = TODO
