@@ -194,19 +194,19 @@ class PGAgent(BaseAgent):
         for start_time_index in range(trajectory_length):
 
             # 1) create a list of indices (t'): goes from t to T-1
-            indices = TODO
+            indices = np.array([t for t in range(start_time_index, trajectory_length)])
 
             # 2) create a list where the entry at each index (t') is gamma^(t'-t)
-            discounts = TODO
+            discounts = np.power([self.gamma], indices)
 
             # 3) create a list where the entry at each index (t') is gamma^(t'-t) * r_{t'}
             # Hint: remember that t' goes from t to T-1, so you should use the rewards from those indices as well
-            discounted_rtg = TODO
+            discounted_rtg = discounts * rewards[start_time_index:]
 
             # 4) calculate a scalar: sum_{t'=t}^{T-1} gamma^(t'-t) * r_{t'}
-            sum_discounted_rtg = TODO
+            sum_discounted_rtg = np.sum(discounted_rtg)
 
             # appending each of these calculated sums into the list to return
             all_discounted_cumsums.append(sum_discounted_rtg)
         list_of_discounted_cumsums = np.array(all_discounted_cumsums)
-        return list_of_discounted_cumsums 
+        return list_of_discounted_cumsums
