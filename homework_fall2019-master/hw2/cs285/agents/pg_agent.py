@@ -106,7 +106,7 @@ class PGAgent(BaseAgent):
             # HINT1: value of each point (t) = total discounted reward summed over the remainder of that trajectory (from t to T-1)
                 # In other words, q(s_t, a_t) = sum_{t'=t}^{T-1} gamma^(t'-t) * r_{t'}
             # Hint3: see the helper functions at the bottom of this file
-            q_values = np.concatenate([TODO for r in rews_list])
+            q_values = np.concatenate([self._discounted_cumsum(r) for r in rews_list])
 
         return q_values
 
