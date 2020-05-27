@@ -189,8 +189,9 @@ class PGAgent(BaseAgent):
 
         all_discounted_cumsums = []
 
+        trajectory_length = len(rewards)
         # for loop over steps (t) of the given rollout
-        for start_time_index in range(len(rewards)): 
+        for start_time_index in range(trajectory_length):
 
             # 1) create a list of indices (t'): goes from t to T-1
             indices = TODO
