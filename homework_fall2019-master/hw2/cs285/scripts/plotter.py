@@ -1,13 +1,18 @@
 import csv
+from collections import namedtuple
 
 data_root_dir = "/Users/danielmeans/Projects/berkeleydeeprl/homework_fall2019-master/hw2/cs285/data/"
 
 class Plotter:
     def __init__(self):
-        pass
+        self.runs = ['lb_rtg_dsa', 'lb_rtg_na', 'lb_no_rtg_dsa', 'sb_rtg_dsa', 'sb_rtg_na', 'sb_no_rtg_dsa', ]
+        EvalReturns = namedtuple('EvalReturns', self.runs)
+        self.eval_returns =EvalReturns
+        for run in self.runs:
+            self.import_data(run)
 
-    def import_data(filename):
-        filepath = data_root_dir + filename
+    def import_data(self, filename):
+        filepath = data_root_dir + filename + '.csv'
         returns = []
         with open(filepath) as csvfile:
             reader = csv.reader(csvfile)
@@ -15,7 +20,7 @@ class Plotter:
                 val = row[2]
                 if Plotter.isFloat(val):
                     returns.append(float(val))
-        return returns[1:]
+        setattr(self.eval_returns, filename, returns)
 
     def isFloat(str):
         try:
@@ -25,7 +30,8 @@ class Plotter:
             return False
 
 def main():
-    print(Plotter.import_data('lb_rtg_dsa.csv'))
-
+    plotty = Plotter()
+    for run in plotty.runs:
+        print(getattr(plotty.eval_returns, run))
 if __name__ == '__main__':
     main()
