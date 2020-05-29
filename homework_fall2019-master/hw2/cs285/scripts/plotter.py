@@ -22,7 +22,7 @@ class Plotter:
                     returns.append(float(val))
         setattr(self.eval_returns, filename, returns)
 
-    def plot_learning_curves(self):
+    def plot_learning_curves(self, save_plots=False):
 
         #large batch plot
         lb_runs = ['lb_rtg_dsa', 'lb_rtg_na', 'lb_no_rtg_dsa']
@@ -33,6 +33,9 @@ class Plotter:
         plt.xlabel('Iteration')
         plt.ylabel('Average Return')
         plt.legend()
+        if save_plots:
+            plot_name = 'lb_average_returns.png'
+            plt.savefig(data_root_dir + plot_name)
         plt.show()
 
         #Small batch plot
@@ -44,9 +47,10 @@ class Plotter:
         plt.xlabel('Iteration')
         plt.ylabel('Average Return')
         plt.legend()
+        if save_plots:
+            plot_name = 'sb_average_returns.png'
+            plt.savefig(data_root_dir + plot_name)
         plt.show()
-
-
 
     def isFloat(str):
         try:
@@ -57,6 +61,6 @@ class Plotter:
 
 def main():
     plotty = Plotter()
-    plotty.plot_learning_curves()
+    plotty.plot_learning_curves(save_plots=True)
 if __name__ == '__main__':
     main()
