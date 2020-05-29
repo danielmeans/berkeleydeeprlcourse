@@ -1,6 +1,6 @@
 import csv
 from collections import namedtuple
-
+import matplotlib.pyplot as plt
 data_root_dir = "/Users/danielmeans/Projects/berkeleydeeprl/homework_fall2019-master/hw2/cs285/data/"
 
 class Plotter:
@@ -22,6 +22,32 @@ class Plotter:
                     returns.append(float(val))
         setattr(self.eval_returns, filename, returns)
 
+    def plot_learning_curves(self):
+
+        #large batch plot
+        lb_runs = ['lb_rtg_dsa', 'lb_rtg_na', 'lb_no_rtg_dsa']
+        for lb_run in lb_runs:
+            y = getattr(self.eval_returns, lb_run)
+            x = [iter for iter in range(len(y))]
+            plt.plot(x, y, label=lb_run)
+        plt.xlabel('Iteration')
+        plt.ylabel('Average Return')
+        plt.legend()
+        plt.show()
+
+        #Small batch plot
+        sb_runs = ['sb_rtg_dsa', 'sb_rtg_na', 'sb_no_rtg_dsa',]
+        for sb_run in sb_runs:
+            y = getattr(self.eval_returns, sb_run)
+            x = [iter for iter in range(len(y))]
+            plt.plot(x, y, label=sb_run)
+        plt.xlabel('Iteration')
+        plt.ylabel('Average Return')
+        plt.legend()
+        plt.show()
+
+
+
     def isFloat(str):
         try:
             float(str)
@@ -31,7 +57,6 @@ class Plotter:
 
 def main():
     plotty = Plotter()
-    for run in plotty.runs:
-        print(getattr(plotty.eval_returns, run))
+    plotty.plot_learning_curves()
 if __name__ == '__main__':
     main()
