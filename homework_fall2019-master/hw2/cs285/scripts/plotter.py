@@ -16,3 +16,16 @@ class Plotter:
                 if Plotter.isFloat(val):
                     returns.append(float(val))
         return returns[1:]
+
+    def isFloat(str):
+        try:
+            float(str)
+            return True
+        except ValueError:
+            return False
+
+def main():
+    print(Plotter.import_data('lb_rtg_dsa.csv'))
+
+if __name__ == '__main__':
+    main()
